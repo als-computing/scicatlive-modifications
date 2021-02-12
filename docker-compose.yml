@@ -1,0 +1,16 @@
+services:
+  web:
+    image: nginx
+    container_name: nginx
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+    - ./web:/etc/nginx/conf.d
+    - ./ssl:/etc/ssl
+    networks:
+      - nginx.docker
+networks:
+  nginx.docker:
+    external: true

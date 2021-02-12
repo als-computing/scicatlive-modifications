@@ -1,0 +1,33 @@
+version: '3'
+services:
+  catanie:
+    container_name: catanie 
+    restart: always 
+    ports:
+    - "4200:4200"
+    build:
+      context: catanie
+      dockerfile: Dockerfile.multistage
+    networks:
+      - nginx.docker
+        #command: serve --public-host noether.lbl.gov --host -1.0.0.0
+  catamel:
+    container_name: catamel
+    restart: always
+    ports:
+    - "3000:3000"
+    build:
+      context: catamel
+    depends_on:
+    - mongodb
+    networks:
+    - nginx.docker
+  mongodb:
+    restart: always
+    image: mongo:4.1.5
+    container_name: sci_mongo
+    networks:
+    - nginx.docker
+networks:
+  nginx.docker:
+    external: true
