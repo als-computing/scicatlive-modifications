@@ -2,7 +2,7 @@ from pprint import pprint
 import requests
 
 session = requests.Session()
-response = requests.post(url="http://localhost:3000/api/v3/Users/login", data={"username": "ingestor", "password": "aman"})
+response = requests.post(url="http://localhost:3000/api/v3/Users/login", data={"username": "ingestor", "password":})
 pprint(response.json())
 token = response.json()['id']
 
